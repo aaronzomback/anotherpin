@@ -1,0 +1,13 @@
+
+<div class="product">
+
+<%= link_to product_path(product) do %>
+ <%= image_tag product.image_1.medium.url %>
+ <% end %>
+
+  <h3><%= link_to product.title, product_path(product) %></h3>
+
+  <p>10$</p>
+</div>
+
+<!-- the 'product' here as in product.title and product.image_1 is linked to the render partial: "product" in the index page. -->
