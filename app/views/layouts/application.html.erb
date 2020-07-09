@@ -4,9 +4,14 @@
     <title>Anotherpin</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+<script src="https://js.stripe.com/v3/"</script>
+<%= javascript_include_tag 'https://checkout.stripe.com/checkout.js' %>
+
+<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
   </head>
 
   <body>
@@ -33,5 +38,6 @@
     </main>
 
     <footer>Copyright 2020</footer>
+
   </body>
 </html>

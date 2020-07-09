@@ -1,0 +1,49 @@
+<h2>Checkout</h2>
+
+Total number of items: <%= @order.order_items.size %>
+<%= simple_form_for @order do |f| %>
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :email %>
+<%= f.input :country %>
+<%= f.input :address_1 %>
+<%= f.input :address_2 %>
+<%= f.input :city %>
+<%= f.input :postal_code %>
+
+<div id="card-errors">
+<% @order.errors[:stripe_token].each do |message| %>
+  <p class="error"><%= message %></p>
+<% end %>
+</div>
+
+<label for="card">Credit or debit card</label>
+<div id="card"></div>
+<%= f.button :submit, "Confirm order" %>
+
+<% end %>
+
+<script>
+  var stripe = Stripe("<%= Rails.application.credentials[Rails.env.to_sym][:stripe_public_key] %>")
+
+  var elements = stripe.elements()
+  var card = elements.create("card")
+  card.mount("#card")
+
+  $("simple_form.new_order").on("submit", function (ev) {
+   ev.preventDefault()
+
+    stripe.createToken(CardNumber).then(function(result) {
+      console.log(result.token.id)
+      if (result.error) {
+        $("card-errors").html(result.error.message)
+      } else {
+
+        $("simple_form.new_order").append("<input type=hidden name='order[stripe_token]' value=" + result.token.id + ">")
+        $("simple_form.new_order").get(0).submit()
+
+      }
+    })
+  })
+
+</script>

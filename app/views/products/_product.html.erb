@@ -7,7 +7,7 @@
 
   <h3><%= link_to product.title, product_path(product) %></h3>
 
-  <p>10$</p>
+  <p><%= number_to_currency product.price_in_dollars %></p>
 </div>
 
 <!-- the 'product' here as in product.title and product.image_1 is linked to the render partial: "product" in the index page. -->

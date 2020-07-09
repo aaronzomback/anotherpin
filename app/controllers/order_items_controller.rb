@@ -29,7 +29,8 @@ def update
   @order_item.update(form_params)
 
   flash[:success] = "Thank you for updating your cart!"
-  redirect_to product_path(@product)
+
+  redirect_to cart_path
 end
 
 

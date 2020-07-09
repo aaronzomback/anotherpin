@@ -6,6 +6,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -45,10 +46,16 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  config.require_master_key = true
+  config.read_encrypted_credentials = true
+
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.require_master_key = true
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
@@ -59,4 +66,21 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 587,
+      domain:               'anotherpin.co',
+      user_name:            'apikey',
+      password:            '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',
+      authentication:       'plain',
+      enable_starttls_auto: true }
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = false
+
+
+
+
+
 end

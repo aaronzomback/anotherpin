@@ -35,6 +35,7 @@ end
 
 gem 'active_link_to'
 gem 'simple_form'
+gem 'country_select', '~> 4.0'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem "fog-aws"
@@ -43,6 +44,10 @@ gem "fog-aws"
 gem 'devise'
 # this is the admin panel
 gem 'activeadmin'
+
+gem 'stripe'
+gem 'stripe-rails'
+gem 'jquery-rails'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
@@ -63,3 +68,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mail'

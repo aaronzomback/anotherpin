@@ -7,6 +7,9 @@ resources :products do
   resources :order_items
 end
 
+# a user can have multiple orders
+resources :orders
+
 # we only want users to see ONE cart
 resource :cart
 
