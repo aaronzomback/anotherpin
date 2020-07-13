@@ -28,13 +28,15 @@ class Order < ApplicationRecord
         Stripe.api_key = Rails.application.credentials[Rails.env.to_sym][:stripe_secret_key]
 
         Stripe::Charge.create(amount: self.total_price, currency: "usd",
-          source: "tok_visa", description: "Order for " + self.email)
+          source: self.stripe_token, description: "Order for " + self.email)
 
         self.save
+
       else
         # doesn't pass validations
         false
       end
+
 
     rescue Stripe::CardError => e
       # this is from stripe
@@ -46,8 +48,6 @@ class Order < ApplicationRecord
       # return false to our controller
       false
     end
-
-
 
 
     def total_price

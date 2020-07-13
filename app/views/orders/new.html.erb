@@ -23,6 +23,8 @@ Total number of items: <%= @order.order_items.size %>
 
 <% end %>
 
+
+
 <script>
   var stripe = Stripe("<%= Rails.application.credentials[Rails.env.to_sym][:stripe_public_key] %>")
 
@@ -30,20 +32,20 @@ Total number of items: <%= @order.order_items.size %>
   var card = elements.create("card")
   card.mount("#card")
 
-  $("simple_form.new_order").on("submit", function (ev) {
-   ev.preventDefault()
+  $("form.new_order").on("submit", function (ev) {
+     ev.preventDefault()
 
-    stripe.createToken(CardNumber).then(function(result) {
-      console.log(result.token.id)
-      if (result.error) {
-        $("card-errors").html(result.error.message)
-      } else {
+     stripe.createToken(card).then(function (result) {
+       console.log(result.token.id)
+       if (result.error) {
+         $("#card-errors").html(result.error.message)
+       } else {
+         $("form.new_order").append("<input type=hidden name='order[stripe_token]' value=" + result.token.id + ">")
+         $("form.new_order").get(0).submit()
+       }
+     })
+   })
 
-        $("simple_form.new_order").append("<input type=hidden name='order[stripe_token]' value=" + result.token.id + ">")
-        $("simple_form.new_order").get(0).submit()
 
-      }
-    })
-  })
 
 </script>

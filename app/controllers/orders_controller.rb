@@ -5,7 +5,6 @@ def show
   @order = Order.find(params[:id])
 end
 
-
 def new
   @order = Order.new
   @order.add_from_cart(@current_cart)
@@ -23,7 +22,7 @@ def create
     flash[:success] = "Order completed"
 
     OrderMailer.receipt(@order).deliver_now
-
+    
     redirect_to order_path(@order)
   else
     render "new"

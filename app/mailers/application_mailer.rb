@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'aaron@anotherpin.co'
+  default from: 'info@timesink.tv'
   layout 'mailer'
 end
