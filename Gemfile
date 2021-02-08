@@ -42,7 +42,7 @@ end
 gem 'active_link_to'
 gem 'simple_form'
 gem 'country_select', '~> 4.0'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'mini_magick'
 gem "fog-aws"
 
